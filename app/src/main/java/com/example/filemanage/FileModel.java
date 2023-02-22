@@ -7,7 +7,7 @@ public class FileModel implements Serializable {
     private String name;
     private String icon;
     private File path;
-
+    private FileModelType fileModelType;
 
     public FileModel(String name, String icon, File path) {
         this.name = name;
@@ -37,5 +37,13 @@ public class FileModel implements Serializable {
 
     public void setPath(File path) {
         this.path = path;
+    }
+
+    public FileModelType getFileModelType() {
+        return fileModelType;
+    }
+
+    public void setFileModelType(FileModelType fileModelType) {
+        this.fileModelType = fileModelType;
     }
 }

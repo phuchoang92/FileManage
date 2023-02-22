@@ -52,7 +52,13 @@ public class FileAdapter extends BaseAdapter {
         }
 
         FileModel file = items.get(i);
-        viewHolder.icon.setImageResource(R.drawable.ic_baseline_folder_24);
+
+        int id = context.getResources().getIdentifier(
+                file.getIcon(),
+                "drawable",
+                context.getPackageName()
+        );
+        viewHolder.icon.setImageResource(id);
         viewHolder.name.setText(file.getName());
 
         return view;

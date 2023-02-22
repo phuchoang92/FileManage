@@ -57,11 +57,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Init
         listFiles = findViewById(R.id.main);
         items = new ArrayList<>();
 
-        // Calling the action bar
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -81,10 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         initializeItems();
 
-        // Register Context Menu <=> Hold item on listview
         registerForContextMenu(listFiles);
 
-        // Click Event ==> Open foler / file
         listFiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -103,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initializeItems() {
-        Log.e("CURRENT PATH", currentPath.getAbsolutePath());
         items.clear();
 
         File[] _files = currentPath.listFiles();
@@ -113,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // Add adapter
         FileAdapter adapter = new FileAdapter(items, this);
         listFiles.setAdapter(adapter);
     }
@@ -164,9 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
-            // Arrow back
             case android.R.id.home:
                 currentPath = currentPath.getParentFile();
                 if(Objects.requireNonNull(currentPath).getName().equals("0")) actionBar.setDisplayHomeAsUpEnabled(false);
@@ -221,10 +213,8 @@ public class MainActivity extends AppCompatActivity {
     private void showItemDialog(File path) {
         final Dialog customDialog = new Dialog(this);
 
-        // match customDialog with custom dialog layout
         customDialog.setContentView(R.layout.layout_item_dialog);
 
-        // File Name
         ((TextView) customDialog.findViewById(R.id.file_name)).setText(path.getName());
 
         TextView txt = customDialog.findViewById(R.id.file_txt);
@@ -256,7 +246,6 @@ public class MainActivity extends AppCompatActivity {
             img.setImageBitmap(bitmap);
         }
 
-        // OK
         ((Button) customDialog.findViewById(R.id.file_btnOK)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,10 +259,8 @@ public class MainActivity extends AppCompatActivity {
     private void showCopyFileDialog(File path) {
         final Dialog customDialog = new Dialog(this);
 
-        // match customDialog with custom dialog layout
         customDialog.setContentView(R.layout.layout_copy_file_dialog);
 
-        // Path
         TextView pathHere = (TextView) customDialog.findViewById(R.id.copy_file_dialog_path);
         pathHere.setText(path.getParentFile().getAbsolutePath());
 
