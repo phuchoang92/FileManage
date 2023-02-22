@@ -52,13 +52,6 @@ public class FileAdapter extends BaseAdapter {
         }
 
         FileModel file = items.get(i);
-
-        // Get ID of icon in drawable folder
-        int id = context.getResources().getIdentifier(
-                file.getIcon(),
-                "drawable",
-                context.getPackageName()
-        );
         viewHolder.icon.setImageResource(R.drawable.ic_baseline_folder_24);
         viewHolder.name.setText(file.getName());
 
